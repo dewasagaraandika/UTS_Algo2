@@ -1,0 +1,76 @@
+uses crt;
+type
+tx_arr = array[ 1..10] of integer;
+txx_arr= array[1..10,1..10] of integer;
+
+procedure cetak(a:tx_arr);
+var
+i:integer;
+begin
+for i :=1 to 10 do
+   begin
+   write(a[i]:3);
+   end;
+writeln;
+end;
+
+procedure cetak_matrik(b:txx_arr);
+var
+i,j:integer;
+begin
+for i:=1 to 10 do
+   begin
+   write(i:5);
+   for j:=1 to 10 do
+   write (b[i][j]:3);
+   writeln;
+   end;
+end;
+
+procedure xxx(var a,b:integer);
+var
+tmp:integer;
+begin
+tmp:=a;
+a:=b;
+b:=tmp;
+end;
+
+procedure salin(idx:integer; a:tx_arr; Var b:txx_arr);
+var
+i:integer;
+begin
+for i:=1 to 10 do
+b[idx][i]:=a[i];
+end;
+
+var
+a:tx_arr;
+b:txx_arr;
+i,j:integer;
+
+begin
+a[1]:=8;a[2]:=9;a[3]:=5;a[4]:=1;a[5]:=6;a[6]:=7;a[7]:=2;a[8]:=3;a[9]:=4;a[10]:=10;
+
+writeln('isi Array A :');
+cetak (a);
+salin(1,a,b);
+
+for i := 1 to 9 do
+begin
+   for j := i+1 to 10 do
+   begin
+   if (a[i]>a[j]) then
+   xxx (a[i],a[j]);
+   end;
+salin(i+1,a,b);
+end;
+
+writeln('isi Matrik M : ');
+cetak_matrik(b);
+writeln('isi Array A : ');
+cetak(a);
+
+readkey;
+end.
+
